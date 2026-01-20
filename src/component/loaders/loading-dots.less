@@ -1,0 +1,46 @@
+.rah-loadingDots {
+  --dot: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--dot) * 0.5);
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--panelBorder);
+}
+
+.rah-loadingDots__dot {
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--brand), white 12%);
+  opacity: 0.6;
+  transform: translateY(0);
+  animation: rah-bounce 900ms ease-in-out infinite;
+}
+
+.rah-loadingDots__dot:nth-child(2) {
+  animation-delay: 150ms;
+  opacity: 0.8;
+}
+.rah-loadingDots__dot:nth-child(3) {
+  animation-delay: 300ms;
+  opacity: 1;
+}
+
+@keyframes rah-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(var(--dot) * -0.65));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rah-loadingDots__dot {
+    animation: none !important;
+  }
+}
+

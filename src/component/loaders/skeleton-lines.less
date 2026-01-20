@@ -1,0 +1,38 @@
+.rah-skeleton {
+  width: min(420px, 100%);
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 6%);
+  display: grid;
+  gap: 10px;
+}
+
+.rah-skeleton__line {
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--panel), black 14%) 0%,
+    color-mix(in oklab, var(--panel), white 10%) 45%,
+    color-mix(in oklab, var(--panel), black 14%) 100%
+  );
+  background-size: 220% 100%;
+  animation: rah-skeletonShimmer 1.15s ease-in-out infinite;
+}
+
+@keyframes rah-skeletonShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rah-skeleton__line {
+    animation: none !important;
+  }
+}
+

@@ -1,0 +1,73 @@
+.rah-rippleBtn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 6%);
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease;
+}
+
+.rah-rippleBtn:hover {
+  border-color: color-mix(in oklab, var(--brand), white 25%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.rah-rippleBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+}
+
+.rah-rippleBtn__content {
+  position: relative;
+  z-index: 1;
+  font-weight: 750;
+  letter-spacing: 0.2px;
+}
+
+.rah-rippleBtn__ripple {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--brand), white 20%) 0%,
+    transparent 60%
+  );
+  animation: rah-ripple 650ms ease-out 1;
+  opacity: 0.75;
+}
+
+@keyframes rah-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(22);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rah-rippleBtn {
+    transition: none !important;
+  }
+  .rah-rippleBtn__ripple {
+    animation: none !important;
+    display: none;
+  }
+}
+

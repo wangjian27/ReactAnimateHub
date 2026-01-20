@@ -1,0 +1,68 @@
+.rah-gradientBorderBtn {
+  --radius: 14px;
+  --border: 2px;
+  --a: 0deg;
+  position: relative;
+  border: 0;
+  padding: var(--border);
+  border-radius: var(--radius);
+  background: conic-gradient(
+    from var(--a),
+    #00d4ff,
+    #7c5cff,
+    #ff4fd8,
+    #00d4ff
+  );
+  cursor: pointer;
+  user-select: none;
+  color: var(--text);
+  transition: transform 160ms ease, filter 200ms ease;
+  animation: rah-angle 2.3s linear infinite;
+}
+
+.rah-gradientBorderBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  animation: none;
+}
+
+.rah-gradientBorderBtn__inner {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 14px;
+  border-radius: calc(var(--radius) - var(--border));
+  /* Opaque surface so the animated border doesn't "bleed" into the center */
+  background: color-mix(in oklab, var(--bg), var(--text) 5%);
+  border: 1px solid var(--panelBorder);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.rah-gradientBorderBtn:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 16px 38px rgba(0, 0, 0, 0.35));
+}
+
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rah-angle {
+  to {
+    --a: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rah-gradientBorderBtn {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

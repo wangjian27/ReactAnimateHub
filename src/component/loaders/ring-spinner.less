@@ -1,0 +1,39 @@
+.rah-ringSpinner {
+  --size: 44px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    color-mix(in oklab, var(--brand), white 10%) 20%,
+    #00d4ff 55%,
+    #ff4fd8 75%,
+    transparent 100%
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(50% - 4px),
+    #000 calc(50% - 3px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(50% - 4px),
+    #000 calc(50% - 3px)
+  );
+  animation: rah-spin 900ms linear infinite;
+  filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes rah-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rah-ringSpinner {
+    animation: none !important;
+  }
+}
+

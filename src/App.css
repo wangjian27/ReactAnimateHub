@@ -1,0 +1,278 @@
+.rah-app {
+  min-height: 100vh;
+  padding: 36px 18px 80px;
+}
+
+.rah-header,
+.rah-main {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.rah-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0 28px;
+}
+
+.rah-header__title h1 {
+  font-size: clamp(34px, 5vw, 54px);
+  letter-spacing: -0.6px;
+}
+
+.rah-subtitle {
+  margin: 10px 0 0;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.rah-arrow {
+  opacity: 0.85;
+}
+
+.rah-main {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.rah-section {
+  border: 1px solid var(--panelBorder);
+  background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--panel), white 6%),
+      var(--panel)
+    );
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.rah-section__head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.rah-section__head h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+
+.rah-section__head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.rah-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.rah-entry {
+  text-align: left;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 6%);
+  border-radius: 16px;
+  padding: 12px;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+  color: inherit;
+}
+
+.rah-entry:hover {
+  border-color: color-mix(in oklab, var(--brand), white 24%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.rah-entry:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--brand), white 18%);
+  outline-offset: 3px;
+}
+
+.rah-entry__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rah-entry__name {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.rah-entry__pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 10%);
+  color: color-mix(in oklab, var(--text), white 6%);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.rah-entry__desc {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rah-entry__thumb {
+  margin-top: 12px;
+  display: grid;
+  place-items: center;
+  min-height: 92px;
+  border-radius: 14px;
+  border: 1px dashed color-mix(in oklab, var(--panelBorder), transparent 25%);
+  background: color-mix(in oklab, var(--panel), black 10%);
+  overflow: hidden;
+}
+
+.rah-preview {
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 6%);
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+}
+
+.rah-previewTitle {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: -0.6px;
+}
+
+.rah-thumbPill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 10%);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.rah-inViewPreview {
+  width: min(720px, 100%);
+  display: grid;
+  gap: 12px;
+}
+
+.rah-inViewPreview__scroll {
+  height: 360px;
+  overflow: auto;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 8%);
+}
+
+.rah-inViewPreview__spacer {
+  height: 220px;
+}
+
+.rah-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 860px) {
+  .rah-header {
+    flex-direction: column;
+  }
+  .rah-grid--two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rah-demoCard {
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 6%);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.rah-demoCard__title {
+  padding: 10px 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border-bottom: 1px solid var(--panelBorder);
+  color: color-mix(in oklab, var(--text), white 6%);
+}
+
+.rah-demoCard__body {
+  padding: 14px;
+  display: grid;
+  place-items: center;
+  min-height: 110px;
+}
+
+.rah-demoCard--wide .rah-demoCard__body {
+  min-height: 220px;
+}
+
+.rah-bigText h2 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.4px;
+}
+
+.rah-paragraph {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.rah-inlineCode {
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 8%);
+  margin: 0 6px;
+}
+
+.rah-footer {
+  margin-top: 4px;
+  padding: 10px 4px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rah-flipContent {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+
+.rah-flipBadge {
+  display: inline-flex;
+  align-self: center;
+  justify-self: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--panelBorder);
+  background: color-mix(in oklab, var(--panel), black 10%);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  font-size: 12px;
+  color: color-mix(in oklab, var(--text), white 8%);
+}
+
+.rah-flipText {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
