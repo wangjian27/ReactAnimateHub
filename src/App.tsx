@@ -97,6 +97,45 @@ function App() {
                 分类：<code className="rah-inlineCode">{active.category}</code>
               </p>
             </div>
+            <div className="rah-detailGrid">
+              <div className="rah-detailCard">
+                <div className="rah-detailCard__title">适用场景</div>
+                <ul className="rah-list">
+                  {active.useCases.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rah-detailCard">
+                <div className="rah-detailCard__title">主要参数</div>
+                <div className="rah-tableWrap">
+                  <table className="rah-table">
+                    <thead>
+                      <tr>
+                        <th>name</th>
+                        <th>type</th>
+                        <th>default</th>
+                        <th>desc</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {active.mainProps.map((p) => (
+                        <tr key={p.name}>
+                          <td>
+                            <code>{p.name}</code>
+                          </td>
+                          <td>
+                            <code>{p.type}</code>
+                          </td>
+                          <td>{p.defaultValue ? <code>{p.defaultValue}</code> : '-'}</td>
+                          <td>{p.description}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
             <div className="rah-preview">{active.renderPreview()}</div>
           </section>
         </main>
