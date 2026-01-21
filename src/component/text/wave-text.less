@@ -1,0 +1,34 @@
+.rah-waveText {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0px;
+  --amp: 10px;
+  --dur: 900ms;
+  --stagger: 45ms;
+}
+
+.rah-waveText__ch {
+  display: inline-block;
+  transform: translate3d(0, 0, 0);
+  animation: rah-wave var(--dur) ease-in-out infinite;
+  animation-delay: calc(var(--i) * var(--stagger));
+  will-change: transform;
+}
+
+@keyframes rah-wave {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, calc(var(--amp) * -1), 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rah-waveText__ch {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+

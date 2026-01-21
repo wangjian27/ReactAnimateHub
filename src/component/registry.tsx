@@ -4,6 +4,7 @@ import {
   FlipCard,
   GradientBorderButton,
   GradientText,
+  WaveText,
   LoadingDots,
   MagneticButton,
   OrbitDots,
@@ -222,6 +223,32 @@ export const componentDemos: ComponentDemo[] = [
         <p className="rah-paragraph" style={{ margin: 0 }}>
           把它当作标题或关键字高亮来用。
         </p>
+      </div>
+    ),
+  },
+  {
+    id: 'wave-text',
+    name: 'WaveText',
+    category: 'Text',
+    description: '文字波浪：逐字上下浮动，适合轻量强调与趣味标题。',
+    useCases: ['Hero 标题/短句点缀', '空状态/引导文案', '按钮旁的小提示（不宜太长）'],
+    mainProps: [
+      { name: 'children', type: 'string', description: '要做波浪动效的文本' },
+      { name: 'as', type: "'span' | 'div' | 'h1' | 'h2' | 'p'", defaultValue: "'span'", description: '渲染的标签' },
+      { name: 'amplitudePx', type: 'number', defaultValue: '10', description: '波浪振幅（px）' },
+      { name: 'durationMs', type: 'number', defaultValue: '900', description: '单个字符动画时长（ms）' },
+      { name: 'staggerMs', type: 'number', defaultValue: '45', description: '字符间延迟（ms）' },
+      { name: 'className', type: 'string', description: '附加样式类' },
+    ],
+    renderThumb: () => <WaveText amplitudePx={7}>WAVE</WaveText>,
+    renderPreview: () => (
+      <div style={{ display: 'grid', gap: 12, placeItems: 'center' }}>
+        <WaveText as="h2" amplitudePx={10} durationMs={900} staggerMs={55} className="rah-previewTitle">
+          Hello Wave Text
+        </WaveText>
+        <WaveText amplitudePx={6} durationMs={700} staggerMs={40}>
+          Subtle motion, better vibe.
+        </WaveText>
       </div>
     ),
   },
