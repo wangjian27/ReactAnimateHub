@@ -2,6 +2,7 @@
   width: 100%;
   max-width: 360px;
   aspect-ratio: 16 / 10;
+  // 景深效果
   perspective: 900px;
 }
 
@@ -40,13 +41,18 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  // 可访问性：当用户在系统里开启“减少动态效果”时，关闭翻转动画。
+  // 目的：避免 3D 翻转导致的眩晕/不适，同时保证内容仍然可读。
   .rah-flipCard__inner {
+    // 取消过渡动画（瞬间完成）
     transition: none !important;
   }
   .rah-flipCard:hover .rah-flipCard__inner {
+    // Hover 时不再旋转
     transform: none;
   }
   .rah-flipCard__face--back {
+    // 隐藏背面（否则会出现重叠/“闪现”）
     display: none;
   }
 }

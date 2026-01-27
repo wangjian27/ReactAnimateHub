@@ -47,9 +47,13 @@
   filter: drop-shadow(0 16px 38px rgba(0, 0, 0, 0.35));
 }
 
+// houdini api 实现动画
 @property --a {
+  // 声明是一个角度值
   syntax: '<angle>';
+  // 不继承
   inherits: false;
+  // 初始值
   initial-value: 0deg;
 }
 

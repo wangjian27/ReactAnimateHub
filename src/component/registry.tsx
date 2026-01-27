@@ -4,6 +4,7 @@ import {
   FlipCard,
   GradientBorderButton,
   GradientText,
+  HollowText,
   WaveText,
   LoadingDots,
   MagneticButton,
@@ -30,6 +31,7 @@ export interface ComponentDemo {
   description: string
   useCases: string[]
   mainProps: ComponentPropMeta[]
+  bgColor?: string;
   renderThumb?: () => ReactNode
   renderPreview: () => ReactNode
 }
@@ -250,6 +252,33 @@ export const componentDemos: ComponentDemo[] = [
           Subtle motion, better vibe.
         </WaveText>
       </div>
+    ),
+  },
+  {
+    id: 'hollow-text',
+    name: 'HollowText',
+    category: 'Text',
+    description: '文字镂空：仅描边、内部透明（可选填充），适合大标题/海报感。',
+    useCases: ['Hero 大标题/海报风', '背景图上的标题（保持通透）', '与渐变/玻璃拟态搭配的品牌字'],
+    bgColor: '#ffffff',
+    mainProps: [
+      { name: 'children', type: 'ReactNode', description: '文本内容' },
+      { name: 'as', type: "'span' | 'div' | 'h1' | 'h2' | 'p'", defaultValue: "'span'", description: '渲染的标签' },
+      { name: 'className', type: 'string', description: '附加样式类' },
+    ],
+    renderThumb: () => (
+      <HollowText as="div" className="rah-previewTitle">
+        Hollow
+      </HollowText>
+    ),
+    renderPreview: () => (
+      <div style={{
+        display: 'grid', gap: 10, placeItems: 'center', textAlign: 'center', width: '100%', height: '100%', backgroundImage: `url('https://dimg04.tripcdn.com/images/0a13512000r0xmicp2B24.webp')`
+      }}>
+        <HollowText as="h2" className="rah-previewTitle">
+          Hollow Text
+        </HollowText>
+      </div >
     ),
   },
   {

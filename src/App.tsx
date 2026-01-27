@@ -136,7 +136,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="rah-preview">{active.renderPreview()}</div>
+            <div className="rah-preview" style={{ background: active.bgColor }}>{active.renderPreview()}</div>
           </section>
         </main>
       </div>
