@@ -5,6 +5,8 @@ import {
   GradientBorderButton,
   GradientText,
   HollowText,
+  EraseText,
+  TypewriterText,
   WaveText,
   LoadingDots,
   MagneticButton,
@@ -279,6 +281,76 @@ export const componentDemos: ComponentDemo[] = [
           Hollow Text
         </HollowText>
       </div >
+    ),
+  },
+  {
+    id: 'typewriter-text',
+    name: 'TypewriterText',
+    category: 'Text',
+    description: '打字机：逐字出现 + 光标闪烁，适合提示语/标题进入动效。',
+    useCases: ['Hero 副标题/提示语', '空状态引导文案', '对话/终端风格 UI'],
+    mainProps: [
+      { name: 'text', type: 'string', description: '要打出来的文本' },
+      { name: 'as', type: "'span' | 'div' | 'h1' | 'h2' | 'p'", defaultValue: "'span'", description: '渲染的标签' },
+      { name: 'startDelayMs', type: 'number', defaultValue: '0', description: '开始前延迟（ms）' },
+      { name: 'charIntervalMs', type: 'number', defaultValue: '55', description: '每个字符间隔（ms）' },
+      { name: 'loop', type: 'boolean', defaultValue: 'false', description: '是否循环重播' },
+      { name: 'loopDelayMs', type: 'number', defaultValue: '900', description: '循环重播间隔（ms）' },
+      { name: 'showCaret', type: 'boolean', defaultValue: 'true', description: '是否显示光标' },
+      { name: 'className', type: 'string', description: '附加样式类' },
+    ],
+    renderThumb: () => <TypewriterText text="Typing..." charIntervalMs={70} />,
+    renderPreview: () => (
+      <div style={{ display: 'grid', gap: 12, placeItems: 'center', textAlign: 'center' }}>
+        <TypewriterText
+          as="h2"
+          className="rah-previewTitle"
+          text="Hello, Typewriter!"
+          startDelayMs={200}
+          charIntervalMs={60}
+        />
+        <TypewriterText text="Looping demo…" loop loopDelayMs={1000} charIntervalMs={80} />
+      </div>
+    ),
+  },
+  {
+    id: 'erase-text',
+    name: 'EraseText',
+    category: 'Text',
+    description: '多行擦除：按行错峰把文本“擦掉”，适合结尾收束/转场提示。',
+    useCases: ['文案退场动效', '多行提示语的收束', '复古/白板擦除感 UI'],
+    bgColor: '#000',
+    mainProps: [
+      { name: 'text', type: 'string', description: '多行文本（用 \\n 分行）' },
+      { name: 'as', type: "'span' | 'div' | 'h1' | 'h2' | 'p'", defaultValue: "'div'", description: '渲染的标签' },
+      { name: 'startDelayMs', type: 'number', defaultValue: '0', description: '开始前延迟（ms）' },
+      { name: 'durationMs', type: 'number', defaultValue: '1400', description: '每行擦除时长（ms）' },
+      { name: 'lineStaggerMs', type: 'number', defaultValue: '220', description: '行间错峰延迟（ms）' },
+      { name: 'direction', type: "'ltr' | 'rtl'", defaultValue: "'ltr'", description: '擦除方向' },
+      { name: 'loop', type: 'boolean', defaultValue: 'false', description: '是否循环' },
+      { name: 'className', type: 'string', description: '附加样式类' },
+    ],
+    renderThumb: () => (
+      <EraseText
+        text={'ERASE\nLINES'}
+        as="div"
+        loop
+        durationMs={1200}
+        lineStaggerMs={160}
+        startDelayMs={0}
+      />
+    ),
+    renderPreview: () => (
+      <div style={{ display: 'grid', gap: 14, placeItems: 'center', textAlign: 'center' }}>
+        <EraseText
+          as="div"
+          className="rah-previewTitle"
+          text={'This line will erase\nAnd this one, too.'}
+          durationMs={1400}
+          lineStaggerMs={260}
+          startDelayMs={250}
+        />
+      </div>
     ),
   },
   {

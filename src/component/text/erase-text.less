@@ -1,0 +1,36 @@
+.rah-eraseText {
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #fff;
+  --value: 0%;
+
+  @property --value {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+  }
+
+  @keyframes rah-eraseText {
+    to {
+      --value: 100%;
+    }
+  }
+
+  .eraser {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+
+    .eraser__text {
+      // 使用背景色来覆盖文字
+      background: linear-gradient(to right, transparent var(--value), #000 var(--value) 100%);
+      // 本用以占位的文字隐藏
+      color: transparent;
+      animation: rah-eraseText 10s ease-in-out forwards;
+    }
+  }
+}
