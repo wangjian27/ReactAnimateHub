@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# React Animate Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一个用于**收集/沉淀动效组件**的小型站点：提供组件目录页 + 详情预览页，方便你把各种动画效果按类别整理成可复用组件。
 
-Currently, two official plugins are available:
+## 本地启动
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm install
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+构建：
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+pnpm build
+pnpm preview
 ```
+
+## 项目结构
+
+```text
+src/
+  component/                # 动效组件库（按类别划分）
+    buttons/
+    loaders/
+    text/
+    cards/
+    scroll/
+    index.ts                # 统一导出
+    registry.tsx            # 组件目录/预览元数据（核心入口）
+  App.tsx                   # 目录页 + 详情页（hash 路由）
+  App.css                   # 站点 UI（目录卡片、详情页信息区等）
+```
+
+## 如何新增一个组件（推荐流程）
+
+1) 在 `src/component/<category>/` 新建组件文件（例如 `MyEffect.tsx`）和样式（`.less`）。
+2) 在该类别的 `index.ts` 里导出组件。
+3) 在 `src/component/registry.tsx` 的 `componentDemos` 数组中新增一条配置：
+   - `id/name/category/description`
+   - `useCases`：适用场景（数组）
+   - `mainProps`：主要参数（name/type/default/desc）
+   - `renderThumb`：目录页缩略预览
+   - `renderPreview`：详情页大预览
+
+完成后会自动出现在首页目录，点击即可进入详情页预览。
+
+## 样式与 Less
+
+- 本项目使用 **Less**（组件样式文件以 `.less` 为主），Vite 会自动处理。
+- 建议每个组件自带样式文件并在组件内 `import './xxx.less'`，保持组件自包含。
+
+## 交互与路由
+
+- 详情页使用 hash 路由：`#/component/<id>`
+- 从详情返回目录时会恢复目录页滚动位置（提升浏览体验）
+
+## 可访问性约定
+
+- 尽量为动效添加 `prefers-reduced-motion` 降级（用户开启“减少动态效果”时关闭动画）
+- Loader 类组件使用 `role="status"` + `aria-label` 提供无障碍提示
